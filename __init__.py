@@ -7,10 +7,6 @@ try:
 except ImportError:
     from xml.etree.ElementTree import XML
 import zipfile,io, re
-##            try:
-##                xml_content = document.read('word/header1.xml')
-##          except:
-##                xml_content = document.read('word/document.xml')
 name = "docuscan"
 class DocuScan():
     '''
@@ -22,7 +18,7 @@ class DocuScan():
         self.fileName=fileName.rsplit('/', 1)[-1]
         self.fileFormat=fileName.rsplit('.',1)[-1]
 
-    def returnFileText(self):
+    def returnFileText(self, xmlHeader='word/document.xml'):
         '''
         Returns the file's text in a large string
         Usage:
@@ -43,7 +39,7 @@ class DocuScan():
                 file =  retstr.getvalue()
 
         elif self.fileFormat=='doc':
-            file=open(file,encoding='latin-1').read()
+            file=open(self.filePathName,encoding='latin-1').read()
 
         elif self.fileFormat=='docx':
             WORD_NAMESPACE = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
@@ -53,7 +49,7 @@ class DocuScan():
             Take the path of a docx file as argument, return the text in unicode.
             """
             document = zipfile.ZipFile(self.filePathName)
-            xml_content = document.read('word/document.xml')
+            xml_content = document.read(xmlHeader)
             document.close()
             try:
                 tree = XML(xml_content)
@@ -83,5 +79,46 @@ class DocuScan():
         listOfRegex = re.findall(regularExpression, fileText)
         return listOfRegex
 
-
-
+    def executeHeaderRegex(self, regularExpression):
+        '''
+            Executes specified regular expression on given file that SUPPORTS header XML.
+            Usage:
+                executeHeaderRegex('regularexpression')
+            Returns:
+                listOfElements-satisfied-by-regex
+        '''
+        if self.fileFormat != "docx":
+            return ('[WARN]   Cannot check header, '+self.fileFormat+' has no XML properies')
+        elif self.fileFormat.lower() == 'docx':
+            listOfRegex=[]
+            count=1
+            while len(listOfRegex) <= 0 and count < 3:
+                headerText=self.returnFileText('word/header'+str(count)+'.xml')
+                listOfRegex = re.findall(regularExpression, headerText)
+                count +=1
+            if len(listOfRegex) <= 0:
+                return '[WARN]   No Headers found'
+            else:
+                return listOfRegex
+        
+    def executeFooterRegex(self, regularExpression):
+        '''
+            Executes specified regular expression on given file that SUPPORTS footer XML.
+            Usage:
+                executeFooterRegex('regularexpression')
+            Returns:
+                listOfElements-satisfied-by-regex
+        '''
+        if self.fileFormat != "docx":
+            return ('[WARN]   Cannot check footer, File Format "'+self.fileFormat+'" has no XML properies')
+        elif self.fileFormat.lower() == 'docx':
+            listOfRegex=[]
+            count=1
+            while len(listOfRegex) <= 0 and count < 3:
+                footerText=self.returnFileText('word/footer'+str(count)+'.xml')
+                listOfRegex = re.findall(regularExpression, footerText)
+                count +=1
+            if len(listOfRegex) <= 0:
+                return '[WARN]   No Footers found'
+            else:
+                return listOfRegex
