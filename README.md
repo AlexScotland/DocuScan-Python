@@ -12,5 +12,4 @@ DocuScan also allows for manipulation of this information via regular expression
 Usage:
   Class DocuScan has 2 functions:
     returnFileText(self) - Takes the file that was called when making the class, converts and returns string.
-
     executeRegex(self, regularExpression) - Calls returnFileText, and applies specified regular expression the the text.  Returns results in a list.
