@@ -18,7 +18,9 @@ Installation:
 
 Usage:
 
-1. class DocuScan('path/to/file/file.docx') to a variable.
+1. class DocuScan('fileName') to a variable.
+
+###It is worth noting that the fileName must be in the directory.
 
 2. use print(variable.returnFileText())
 
