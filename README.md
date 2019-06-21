@@ -13,7 +13,7 @@ Usage:
 
 1. pip install DocuScan
 
-2.import DocuScan_pkg
+2. import DocuScan_pkg
 
   Class DocuScan has 2 functions:
     returnFileText(self) - Takes the file that was called when making the class, converts and returns string.
