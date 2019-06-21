@@ -26,8 +26,16 @@ Usage:
 
 3. use print(variable.executeRegex('regex here'))
 
+4. use print(executeHeaderRegex('regex here'))
+
+5. use print(executeFooterRegex('regex here'))
+
 Functionality:
 
 1. returnFileText() - Returns the text of a file.
 
 2. executeRegex(regexExpression) - creates a list of all matching cases of regexExpression
+
+3. executeHeaderRegex(regularExpression) - creates a list of all matching cases of regexExpression in the header XML.
+
+4. executeFooterRegex(regularExpression) - creates a list of all matching cases of regexExpression in the Footer XML.
