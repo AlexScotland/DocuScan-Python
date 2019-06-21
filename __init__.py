@@ -11,7 +11,7 @@ import zipfile,io, re
 ##                xml_content = document.read('word/header1.xml')
 ##          except:
 ##                xml_content = document.read('word/document.xml')
-name = "docuscan_pkg"
+name = "docuscan"
 class DocuScan():
     '''
         Class that scans documents (pdf, doc and docx) and returns their strings,
@@ -52,7 +52,7 @@ class DocuScan():
             """
             Take the path of a docx file as argument, return the text in unicode.
             """
-            document = zipfile.ZipFile(file)
+            document = zipfile.ZipFile(self.filePathName)
             xml_content = document.read('word/document.xml')
             document.close()
             try:
@@ -82,4 +82,6 @@ class DocuScan():
         fileText = self.returnFileText()
         listOfRegex = re.findall(regularExpression, fileText)
         return listOfRegex
+
+
 
