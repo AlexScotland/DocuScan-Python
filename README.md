@@ -6,8 +6,19 @@ DocuScan allows users to open up document types docx,doc,pdf and return the info
 
 DocuScan also allows for manipulation of this information via regular expressions.
 
-[Check out my other projects!](https://github.com/mutster)
+[Check out my other projects!](https://github.com/AlexScotland)
 
+Requirements:
+
+1. pdfminer
+
+2. zipfile
+
+3. io
+
+4. re
+
+5.  XML
 
 Installation:
 
