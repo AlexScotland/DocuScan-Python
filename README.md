@@ -6,16 +6,24 @@ DocuScan allows users to open up document types docx,doc,pdf and return the info
 
 DocuScan also allows for manipulation of this information via regular expressions.
 
-[Check out my other projects!](https://github.com/mutster)
+Check out my other projects!
 
+Installation:
+
+run pip install DocuScan
+
+import DocuScan
 
 Usage:
 
-1. pip install DocuScan
+class DocuScan('path/to/file/file.docx') to a variable.
 
-2. from DocuScan_pkg import *
+use print(variable.returnFileText())
 
-  Class DocuScan has 2 functions:
-    returnFileText(self) - Takes the file that was called when making the class, converts and returns string.
-    
-   executeRegex(self, regularExpression) - Calls returnFileText, and applies specified regular expression the the text.  Returns results in a list.
+use print(variable.executeRegex('regex here'))
+
+Functionality:
+
+returnFileText() - Returns the text of a file.
+
+executeRegex(regexExpression) - creates a list of all matching cases of regexExpression
