@@ -10,6 +10,10 @@ DocuScan also allows for manipulation of this information via regular expression
 
 
 Usage:
+*pip install DocuScan
+
+*import DocuScan_pkg
+
   Class DocuScan has 2 functions:
     returnFileText(self) - Takes the file that was called when making the class, converts and returns string.
     
