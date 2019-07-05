@@ -10,15 +10,13 @@ DocuScan also allows for manipulation of this information via regular expression
 
 Requirements:
 
-1. pdfminer
+1. zipfile
 
-2. zipfile
+2. io
 
-3. io
+3. re
 
-4. re
-
-5.  XML
+4.  XML
 
 Installation:
 
@@ -32,6 +30,8 @@ Usage:
 1. class DocuScan('fileName') to a variable.
 
 ###It is worth noting that the fileName must be in the directory.
+
+########### example :DocuScan("C:\\Users\\Person\\Desktop\\folder1\\test.pdf")
 
 2. use print(variable.returnFileText())
 
